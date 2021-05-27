@@ -1,35 +1,59 @@
-import React, {useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {useTable} from 'react-table';
+import usePokeData from './data';
+
+function GetPoke(){
+  return usePokeData()
+}
+
+const Table = () =>{ 
+  
+  const result: Array<any> = usePokeData();
+  console.log(result)
 
 
-const Table = () =>{
-    const data: Array<any> = useMemo(
-        () => [
-          {
-            col1: 'One',
-            col2: 'two',
-          },
-          {
-            col1: 'three',
-            col2: 'four',
-          },
-          {
-            col1: 'five',
-            col2: 'six',
-          }
-        ], []
-      )
+    // const data: Array<any> = useMemo(
+    //     () => [
+    //       {
+    //         col1: 'One',
+    //         col2: 'two',
+    //       },
+    //       {
+    //         col1: 'three',
+    //         col2: 'four',
+    //       },
+    //       {
+    //         col1: 'five',
+    //         col2: 'six',
+    //       }
+    //     ], []
+    //   )
+    // const data: Array<any> = useMemo(() => {return GetPoke()},[])
+
+    const data: Array<any> = result
     
     
       const columns: Array<any> = useMemo(
         () => [
           {
-            Header: "Col1",
-            accessor: "col1",
+            Header: "pokedex_number",
+            accessor: "pokedex_number",
           },
           {
-            Header: "Col2",
-            accessor: "col2",
+            Header: "name",
+            accessor: "name",
+          },
+          {
+            Header: "species",
+            accessor: "species",
+          },
+          {
+            Header: "type_1",
+            accessor: "type_1",
+          },
+          {
+            Header: "type_2",
+            accessor: "type_2",
           },
         ],[]
       )

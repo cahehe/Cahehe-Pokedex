@@ -1,3 +1,4 @@
+
 import {useState, useEffect} from 'react'; 
 
 
@@ -11,17 +12,17 @@ interface pokeData{
 
 //interface allPokeData
 
-const getPokeData = () => {
+const usePokeData = () => {
     const [result, setResult] = useState<pokeData[]>([]);
 
     useEffect(() => {
         fetch("http://localhost:5000/all")
         .then(response => response.json())
-        .then(response => setResult(response))
-        .catch(error => console.log(error))
+        .then(response => setResult(response))           
+        .catch(error => console.log(error))        
     }, [])
 
     return result
 }
 
-export default getPokeData
+export default usePokeData
