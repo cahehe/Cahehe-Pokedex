@@ -1,15 +1,17 @@
-import React, {useEffect, useMemo} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {useTable} from 'react-table';
 import usePokeData from './data';
 
 function GetPoke(){
-  return usePokeData()
+  const result: Array<any> = usePokeData();  
+  console.log(result)
+  return result
 }
 
 const Table = () =>{ 
   
-  const result: Array<any> = usePokeData();
-  console.log(result)
+  const data: Array<any> = usePokeData();
+  // console.log(result)
 
 
     // const data: Array<any> = useMemo(
@@ -28,9 +30,9 @@ const Table = () =>{
     //       }
     //     ], []
     //   )
-    // const data: Array<any> = useMemo(() => {return GetPoke()},[])
+    //const data: Array<any> = useMemo(() => GetPoke(),[]) //its returning an undefined value first so it gives an error.
 
-    const data: Array<any> = result
+    //const data: Array<any> = result
     
     
       const columns: Array<any> = useMemo(
@@ -71,21 +73,19 @@ const Table = () =>{
       return (
         <div>      
           <table {...getTableProps()}>
-            <thead>
-              <tr>
-                {
-                  headerGroups.map(headerGroup => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                      {
-                        headerGroup.headers.map(column => (
-                          <th {...column.getHeaderProps()}>                        
-                            {column.render('Header')}
-                          </th>
-                        ))
-                      }
-                    </tr>  
-                  ))}
-              </tr>
+            <thead>              
+              {
+                headerGroups.map(headerGroup => (
+                  <tr {...headerGroup.getHeaderGroupProps()}>
+                    {
+                      headerGroup.headers.map(column => (
+                        <th {...column.getHeaderProps()}>                        
+                          {column.render('Header')}
+                        </th>
+                      ))
+                    }
+                  </tr>  
+                ))}              
             </thead>
     
             <tbody {...getTableBodyProps()}>
