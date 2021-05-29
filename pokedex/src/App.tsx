@@ -1,11 +1,11 @@
 import React, { ReactElement, useState, useEffect, useMemo } from 'react';
-import Table from './components/table'
+import GetPokeData from './components/getpokedata'
 
 function App() {
 
   return (
     <div className="App">            
-      <Table/>
+      <GetPokeData/>
     </div>
   );
 }

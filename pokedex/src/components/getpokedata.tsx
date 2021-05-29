@@ -1,5 +1,6 @@
 
 import {useState, useEffect} from 'react'; 
+import Table from './table';
 
 
 interface pokeData{
@@ -12,7 +13,7 @@ interface pokeData{
 
 //interface allPokeData
 
-const usePokeData = () => {
+const GetPokeData = () => {
     const [result, setResult] = useState<pokeData[]>([]);
 
     useEffect(() => {
@@ -22,7 +23,7 @@ const usePokeData = () => {
         .catch(error => console.log(error))        
     }, [])
 
-    return result
+    return (<Table result = {result} />)
 }
 
-export default usePokeData
+export default GetPokeData

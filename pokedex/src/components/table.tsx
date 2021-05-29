@@ -1,38 +1,21 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {useTable} from 'react-table';
-import usePokeData from './data';
 
-function GetPoke(){
-  const result: Array<any> = usePokeData();  
-  console.log(result)
-  return result
+interface pokeData{
+  pokedex_number: number,
+  name: string,
+  species: string,
+  type_1: string,
+  type_2: string
 }
 
-const Table = () =>{ 
-  
-  const data: Array<any> = usePokeData();
-  // console.log(result)
+interface tableProps{
+  result: pokeData[]
+}
 
+const Table = (props: tableProps) =>{ 
 
-    // const data: Array<any> = useMemo(
-    //     () => [
-    //       {
-    //         col1: 'One',
-    //         col2: 'two',
-    //       },
-    //       {
-    //         col1: 'three',
-    //         col2: 'four',
-    //       },
-    //       {
-    //         col1: 'five',
-    //         col2: 'six',
-    //       }
-    //     ], []
-    //   )
-    //const data: Array<any> = useMemo(() => GetPoke(),[]) //its returning an undefined value first so it gives an error.
-
-    //const data: Array<any> = result
+    const data : Array<any> = props.result
     
     
       const columns: Array<any> = useMemo(
