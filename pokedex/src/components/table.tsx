@@ -1,5 +1,6 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {useTable} from 'react-table';
+import {Link} from 'react-router-dom';
 
 interface pokeData{
   pokedex_number: number,
@@ -52,6 +53,8 @@ const Table = (props: tableProps) =>{
         rows,
         prepareRow,
       } = tableInstance
+
+      //console.log(rows[0])
     
       return (
         <div>      
@@ -78,9 +81,13 @@ const Table = (props: tableProps) =>{
                   <tr {...row.getRowProps()}>
                     {
                       row.cells.map(cell => {
+                      console.log(row)
+                      //let name = row['name']
                         return (                      
-                          <td {...cell.getCellProps()}>                        
-                            {cell.render('Cell')}
+                          <td {...cell.getCellProps()}>                            
+                            <Link to = {'/' +  row.values.name}>                              
+                              {cell.render('Cell') }
+                            </Link>                        
                           </td>
                         )
                       })

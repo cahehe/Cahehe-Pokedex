@@ -13,7 +13,7 @@ interface pokeData{
 
 //interface allPokeData
 
-const GetPokeData = () => {
+const Home = () => {
     const [result, setResult] = useState<pokeData[]>([]);
 
     useEffect(() => {
@@ -26,4 +26,4 @@ const GetPokeData = () => {
     return (<Table result = {result} />)
 }
 
-export default GetPokeData
+export default Home
