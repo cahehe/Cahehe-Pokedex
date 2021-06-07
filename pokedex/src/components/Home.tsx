@@ -16,8 +16,8 @@ interface pokeData{
 const Home = () => {
     const [result, setResult] = useState<pokeData[]>([]);
 
-    useEffect(() => {
-        fetch("http://localhost:5000/all")
+    useEffect(() => {        
+        fetch("http://localhost:5000/general")
         .then(response => response.json())
         .then(response => setResult(response))           
         .catch(error => console.log(error))        

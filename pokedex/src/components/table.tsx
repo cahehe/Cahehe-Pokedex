@@ -84,8 +84,9 @@ const Table = (props: tableProps) =>{
                       console.log(row)
                       //let name = row['name']
                         return (                      
-                          <td {...cell.getCellProps()}>                            
-                            <Link to = {'/' +  row.values.name}>                              
+                          <td {...cell.getCellProps()}> 
+                            {/* need to encode incase we have percentage sign                            */}
+                            <Link to = {'/' +  encodeURIComponent(row.values.name)}>                              
                               {cell.render('Cell') }
                             </Link>                        
                           </td>
