@@ -3,15 +3,17 @@ interface data{
 }
 
 interface propTypes{
-    data: data[]
+    data: data[],
+    title: string
 }
 
 const Section = (prop: propTypes) =>{
     console.log(Object.keys(prop.data[0]))
     return(
         <div>
+            <h2>{prop.title}</h2>
             {Object.keys(prop.data[0]).map((keyName, keyIndex) => (
-                <h1>{keyName}: {prop.data[0][keyName]} </h1>
+                <h3>{keyName}: {prop.data[0][keyName]} </h3>
             ))}
         </div>
     )
