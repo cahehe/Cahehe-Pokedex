@@ -8,7 +8,7 @@ interface propTypes{
 }
 
 const Section = (prop: propTypes) =>{
-    console.log(Object.keys(prop.data[0]))
+    //console.log(Object.keys(prop.data[0]))
     return(
         <div>
             <h2>{prop.title}</h2>

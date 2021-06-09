@@ -82,7 +82,7 @@ const Table = (props: tableProps) =>{
                 <tr {...row.getRowProps()}>
                   {
                     row.cells.map(cell => {
-                    console.log(row)
+                    //console.log(row)
                     //let name = row['name']
                       return (                      
                         <td {...cell.getCellProps()}> 
