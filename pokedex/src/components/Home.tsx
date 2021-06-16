@@ -1,6 +1,7 @@
 
 import {useState, useEffect} from 'react'; 
 import Table from './table';
+//import './table.css';
 
 
 interface pokeData{
@@ -23,7 +24,7 @@ const Home = () => {
         .catch(error => console.log(error))        
     }, [])
 
-    return (<Table result = {result} />)
+    return (<Table className = "Table" result = {result} />)
 }
 
 export default Home

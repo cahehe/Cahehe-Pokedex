@@ -1,6 +1,8 @@
-import { useMemo } from 'react';
-import {useTable} from 'react-table';
+import { useMemo, useCallback } from 'react';
+import {useTable, useBlockLayout} from 'react-table';
 import {Link} from 'react-router-dom';
+import { FixedSizeList } from 'react-window';
+import "./table.css"
 
 interface pokeData{
   pokedex_number: number,
@@ -11,7 +13,8 @@ interface pokeData{
 }
 
 interface tableProps{
-  result: pokeData[]
+  result: pokeData[],
+  className: string
 }
 
 const Table = (props: tableProps) =>{ 
@@ -45,61 +48,70 @@ const Table = (props: tableProps) =>{
       ],[]
     )
   
-    const tableInstance = useTable({columns, data})
+    const tableInstance = useTable({columns, data}, useBlockLayout)
   
     const {
       getTableProps,
       getTableBodyProps,
       headerGroups,
       rows,
+      totalColumnsWidth,
       prepareRow,
-    } = tableInstance
+    } = tableInstance    
 
-    //console.log(rows[0])
-  
-    return (
-      <div>      
-        <table {...getTableProps()}>
-          <thead>              
+
+    const Row = useCallback(({index, style}) => {
+      const row = rows[index]
+        prepareRow(row)
+        return (
+          <div {...row.getRowProps({style})}  className = "rows">
             {
-              headerGroups.map(headerGroup => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {
-                    headerGroup.headers.map(column => (
-                      <th {...column.getHeaderProps()}>                        
-                        {column.render('Header')}
-                      </th>
-                    ))
-                  }
-                </tr>  
-              ))}              
-          </thead>
+              row.cells.map(cell => {
+              //console.log(row)
+              //let name = row['name']
+                return (                      
+                  <div {...cell.getCellProps()}> 
+                    {/* need to encode incase we have percentage sign                            */}
+                    <Link to = {'/' +  encodeURIComponent(row.values.name)}>                              
+                      {cell.render('Cell') }
+                    </Link>                        
+                  </div>
+                )
+              })
+            }
+          </div>
+        )
+      }, [prepareRow,rows]
+    )   
   
-          <tbody {...getTableBodyProps()}>
-            {rows.map(row => {
-              prepareRow(row)
-              return (
-                <tr {...row.getRowProps()}>
-                  {
-                    row.cells.map(cell => {
-                    //console.log(row)
-                    //let name = row['name']
-                      return (                      
-                        <td {...cell.getCellProps()}> 
-                          {/* need to encode incase we have percentage sign                            */}
-                          <Link to = {'/' +  encodeURIComponent(row.values.name)}>                              
-                            {cell.render('Cell') }
-                          </Link>                        
-                        </td>
-                      )
-                    })
-                  }
-                </tr>
-              )
-            })}          
-          </tbody>
-        </table>
-      </div>
+    return (           
+      <div {...getTableProps()}>
+        <div>              
+          {
+            headerGroups.map(headerGroup => (
+              <div {...headerGroup.getHeaderGroupProps()} id = "header">
+                {
+                  headerGroup.headers.map(column => (
+                    <div {...column.getHeaderProps()}>                        
+                      {column.render('Header')}
+                    </div>
+                  ))
+                }
+              </div>  
+            ))}              
+        </div>
+
+        <div {...getTableBodyProps()}>
+          <FixedSizeList                              
+            height = {800}
+            itemCount = {rows.length}
+            itemSize = {100}
+            width={totalColumnsWidth + 680}
+          >
+            {Row}
+          </FixedSizeList>                   
+        </div>
+      </div>      
     );
 }
 
