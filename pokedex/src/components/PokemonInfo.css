@@ -1,0 +1,26 @@
+#title{    
+    text-align: center;    
+}
+
+.info{
+    display:grid;    
+    grid-template-columns: 33% 33% auto;
+    grid-template-areas: "pic training third";    
+}
+
+#pic{
+    grid-area: pic;    
+}
+
+#training{
+    grid-area: training;    
+}
+
+#lastColumn{
+    grid-area: third;           
+}
+
+#basicStats{
+    border-style: solid;
+    border-color: black;
+}

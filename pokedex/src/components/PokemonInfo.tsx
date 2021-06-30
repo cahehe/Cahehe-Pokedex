@@ -1,6 +1,8 @@
 import {useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Section from './Section'
+import Stats from './Stats'
+import "./PokemonInfo.css"
 
 interface prop{
     name: string;
@@ -50,11 +52,16 @@ const PokemonInfo = (prop:prop) => {
 
     return(
         <div>
-            <h1>{pokemonName}</h1>
-            <Section data = {abilities} title = {"Abilities"}/>
-            <Section data = {training} title = {"Training"}/>
-            <Section data = {basicStats} title = {"Basic Stats"}/>
-            <Section data = {pokedexInfo} title = {"Pokedex Info"}/>
+            <h1 id = "title">{pokemonName}</h1>
+            <div className = "info">
+                <h1 id = "pic">Pic goes here</h1>
+                <Section id = "training" data = {training} title = {"Training"}/>
+                <div id = "lastColumn">
+                    <Section id = "pokedexInfo" data = {pokedexInfo} title = {"Pokedex Info"}/>
+                    <Section id = "abilities" data = {abilities} title = {"Abilities"}/>                
+                </div>                            
+            </div>
+            <Stats id = "basicStats" data = {basicStats} title = {"Basic Stats"}/>
         </div>
     )
     

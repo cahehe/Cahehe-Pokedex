@@ -1,0 +1,14 @@
+.progress{  
+  /* (height of inner div) / 2 + padding */
+  border-style: solid;
+  border-color: grey;  
+}
+
+.progress>span {
+    display: block;
+    background-color: orange; 
+    /* width: 60%;    */
+    /* Adjust with JavaScript */
+    height: 50px;
+    /* border-radius: 10px; */
+  }
