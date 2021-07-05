@@ -19,6 +19,7 @@ const PokemonInfo = (prop:prop) => {
     const[abilities, setAbilities] = useState([{}])    
     const[training, setTraining] = useState([{}])    
     const[basicStats, setBasicStats] = useState([{}])    
+    const[maxVals, setMaxVals] = useState([{}])    
 
     const path = `http://localhost:5000/`
 
@@ -50,6 +51,13 @@ const PokemonInfo = (prop:prop) => {
         .catch(error => console.log(error))   
     },[path,pokemonName])
 
+    useEffect(() => {
+        fetch(path + `max`)
+        .then(response => response.json())
+        .then(response => setMaxVals(response))           
+        .catch(error => console.log(error))   
+    },[path])
+
     return(
         <div>
             <h1 id = "title">{pokemonName}</h1>
@@ -61,7 +69,7 @@ const PokemonInfo = (prop:prop) => {
                     <Section id = "abilities" data = {abilities} title = {"Abilities"}/>                
                 </div>                            
             </div>
-            <Stats id = "basicStats" data = {basicStats} title = {"Basic Stats"}/>
+            <Stats id = "basicStats" data = {basicStats} title = {"Basic Stats"} max = {maxVals}/>
         </div>
     )
     

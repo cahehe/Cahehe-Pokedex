@@ -5,7 +5,7 @@ interface data{
 }
 
 interface propTypes{
-    data: data[],
+    data: data[],    
     title: string,
     id: string
 }
