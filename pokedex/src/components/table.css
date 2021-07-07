@@ -20,5 +20,23 @@
 /* each row takes up all the width so we use justify-content and align items */
 .rows{    
     justify-content: center;
-    align-items: center;    
+    align-items: center;
+    border-style: solid;           
+    /* /* padding-top: 0px; */
+}
+
+.table{
+    /* border-style: solid; */
+    /* border-color: orange; */
+    /* width: 50%; */
+}
+
+.all{
+    /* background-color:grey;
+    border-style:solid;
+    border-color: green;         */
+}
+
+#link{
+    text-align: center;        
 }

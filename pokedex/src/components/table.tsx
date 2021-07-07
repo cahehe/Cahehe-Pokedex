@@ -64,15 +64,15 @@ const Table = (props: tableProps) =>{
       const row = rows[index]
         prepareRow(row)
         return (
-          <div {...row.getRowProps({style})}  className = "rows">
+          <div {...row.getRowProps({style})}  className = "rows">          
             {
               row.cells.map(cell => {
               //console.log(row)
               //let name = row['name']
                 return (                      
-                  <div {...cell.getCellProps()}> 
-                    {/* need to encode incase we have percentage sign                            */}
-                    <Link to = {'/' +  encodeURIComponent(row.values.name)}>                              
+                  <div {...cell.getCellProps()} className = "all"> 
+                    {/* need to encode incase we have percentage sign                            */}                    
+                    <Link to = {'/' +  encodeURIComponent(row.values.name)}>                                                  
                       {cell.render('Cell') }
                     </Link>                        
                   </div>
@@ -85,7 +85,7 @@ const Table = (props: tableProps) =>{
     )   
   
     return (           
-      <div {...getTableProps()}>
+      <div {...getTableProps()} className = "table">
         <div>              
           {
             headerGroups.map(headerGroup => (
