@@ -13,7 +13,7 @@ interface props{
 
 const Stats = (prop: props) =>{
     // console.log("max is " + prop.max)
-    console.log(prop.max[0])
+    //console.log(prop.max[0])
 
     const isNumeric = (key : number | string, val: number | string, max: string | number)  => {            
         let total : number = 0

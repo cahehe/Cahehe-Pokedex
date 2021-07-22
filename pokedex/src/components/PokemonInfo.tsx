@@ -12,6 +12,10 @@ interface linkProp{
     pokemonName: string;
 }
 
+interface data{
+    [ key : string]: string
+}
+
 const PokemonInfo = (prop:prop) => {
 
     const {pokemonName} = useParams<linkProp>();        
@@ -20,6 +24,7 @@ const PokemonInfo = (prop:prop) => {
     const[training, setTraining] = useState([{}])    
     const[basicStats, setBasicStats] = useState([{}])    
     const[maxVals, setMaxVals] = useState([{}])    
+    const[imageUrl, setImageUrl] = useState<data[]>([{}])    
 
     const path = `http://localhost:5000/`
 
@@ -58,11 +63,19 @@ const PokemonInfo = (prop:prop) => {
         .catch(error => console.log(error))   
     },[path])
 
+    useEffect(() => {
+        fetch(path + `images?name=${encodeURIComponent(pokemonName)}`)
+        .then(response => response.json())
+        .then(response => setImageUrl(response))           
+        .catch(error => console.log(error))   
+    },[path, pokemonName])
+
+    console.log(imageUrl[0]['link'])
     return(
         <div>
             <h1 id = "title">{pokemonName}</h1>
             <div className = "info">
-                <h1 id = "pic">Pic goes here</h1>
+                <img src = {imageUrl[0]['link']} id = "pic" alt = ""/>
                 <Section id = "training" data = {training} title = {"Training"}/>
                 <div id = "lastColumn">
                     <Section id = "pokedexInfo" data = {pokedexInfo} title = {"Pokedex Info"}/>
