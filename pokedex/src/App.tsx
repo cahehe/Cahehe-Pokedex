@@ -1,11 +1,11 @@
-import React, { ReactElement, useState, useEffect, useMemo } from 'react';
-import Table from './components/table'
+import Main from './components/Main';
+import "./App.css"
 
 function App() {
 
   return (
-    <div className="App">            
-      <Table/>
+    <div className="App">     
+      <Main className = 'Main'/>
     </div>
   );
 }

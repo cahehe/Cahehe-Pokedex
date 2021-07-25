@@ -1,0 +1,42 @@
+/* hide scroll bar for IE */
+*{
+    -ms-overflow-style: none;
+    /* justify-content: center;
+    align-items: center;     */    
+}
+
+/* hide scroll bar for chrome */
+*::-webkit-scrollbar {
+    display: none;
+}
+
+/* the column names container don't take up all the width so we can center using margins */
+/*P.S We can see how big the container is by setting borders*/
+#header{            
+    margin-right: auto;
+    margin-left: auto;            
+}
+
+/* each row takes up all the width so we use justify-content and align items */
+.rows{    
+    justify-content: center;
+    align-items: center;
+    border-style: solid;           
+    /* /* padding-top: 0px; */
+}
+
+.table{
+    /* border-style: solid; */
+    /* border-color: orange; */
+    /* width: 50%; */
+}
+
+.all{
+    /* background-color:grey;
+    border-style:solid;
+    border-color: green;         */
+}
+
+#link{
+    text-align: center;        
+}
