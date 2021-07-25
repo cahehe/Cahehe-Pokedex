@@ -75,7 +75,7 @@ const PokemonInfo = (prop:prop) => {
         <div>
             <h1 id = "title">{pokemonName}</h1>
             <div className = "info">
-                <img src = {imageUrl[0]['link']} id = "pic" alt = ""/>
+                <img src = {imageUrl[0]['link']} id = "image" alt = ""/>
                 <Section id = "training" data = {training} title = {"Training"}/>
                 <div id = "lastColumn">
                     <Section id = "pokedexInfo" data = {pokedexInfo} title = {"Pokedex Info"}/>
