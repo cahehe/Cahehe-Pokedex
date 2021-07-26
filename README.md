@@ -3,4 +3,4 @@ Pokedex describing each pokemon from gen 1-8.
 
 
 TODOS:
-1. apply default image for pokemons with no image.
+1. Adjust picture or find a better noImg pic.
