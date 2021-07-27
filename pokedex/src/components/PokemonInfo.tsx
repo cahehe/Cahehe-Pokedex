@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Section from './Section'
 import Stats from './Stats'
 import "./PokemonInfo.css"
+import noImg from '../images/noImage.jpeg';
 
 interface prop{
     name: string;
@@ -24,7 +25,7 @@ const PokemonInfo = (prop:prop) => {
     const[training, setTraining] = useState([{}])    
     const[basicStats, setBasicStats] = useState([{}])    
     const[maxVals, setMaxVals] = useState([{}])    
-    const[imageUrl, setImageUrl] = useState<data[]>([{}])    
+    const[imageUrl, setImageUrl] = useState<data[]>([{'link': '/images/noImage.jpeg'}])
 
     const path = `http://localhost:5000/`
 
@@ -64,18 +65,36 @@ const PokemonInfo = (prop:prop) => {
     },[path])
 
     useEffect(() => {
+        //console.log("1st")
+        
         fetch(path + `images?name=${encodeURIComponent(pokemonName)}`)
         .then(response => response.json())
         .then(response => setImageUrl(response))           
         .catch(error => console.log(error))   
+                          
+
+        // setImageUrl([{'link': './images/noImage.jpeg'}])
+        // console.log("2nd")
+
     },[path, pokemonName])
 
-    console.log(imageUrl[0]['link'])
+
+    const imageRender = (prop : data[]) => {
+        if(typeof(prop[0]) !== "undefined"){            
+            return <img src = {prop[0]['link']} id = "image" alt = ""/> 
+        }
+
+        return <img src = {noImg} id = "image" alt = ""/>
+    } 
+    
+    //console.log(imageUrl[0]['link'])
+
     return(
         <div>
             <h1 id = "title">{pokemonName}</h1>
             <div className = "info">
-                <img src = {imageUrl[0]['link']} id = "image" alt = ""/>
+                {imageRender(imageUrl)}
+                {/* <img src = {imageUrl[0]['link']} id = "image" alt = ""/> */}
                 <Section id = "training" data = {training} title = {"Training"}/>
                 <div id = "lastColumn">
                     <Section id = "pokedexInfo" data = {pokedexInfo} title = {"Pokedex Info"}/>
