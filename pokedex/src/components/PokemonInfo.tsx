@@ -27,7 +27,7 @@ const PokemonInfo = (prop:prop) => {
     const[maxVals, setMaxVals] = useState([{}])    
     const[imageUrl, setImageUrl] = useState<data[]>([{'link': '/images/noImage.jpeg'}])
 
-    const path = `http://localhost:5000/`
+    const path = `https://carloshehe-pokedex-backend.herokuapp.com/`
 
     useEffect(() => {
         fetch(path + `pokedexInfo?name=${encodeURIComponent(pokemonName)}`)

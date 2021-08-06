@@ -18,7 +18,7 @@ const Home = () => {
     const [result, setResult] = useState<pokeData[]>([]);
 
     useEffect(() => {        
-        fetch("http://localhost:5000/general")
+        fetch("https://carloshehe-pokedex-backend.herokuapp.com/general")
         .then(response => response.json())
         .then(response => setResult(response))           
         .catch(error => console.log(error))        
