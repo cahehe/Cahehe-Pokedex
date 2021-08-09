@@ -40,13 +40,14 @@ const Stats = (prop: props) =>{
             {Object.keys(prop.data[0]).map((keyName, keyIndex) => {
                 if(keyName !== "name") 
                     return(                                       
-                        <div >
+                        <div key = {keyName}>
                             <h3>{keyName}: {prop.data[0][keyName]} </h3>
                             {isNumeric(keyName, prop.data[0][keyName], prop.max[0][keyName])}                    
                         </div>                            
                     )
-                return <div></div>                
+                return <div key = {keyName}></div>                
             })}
+            <footer id = "footer">Note: Stats are a percentage of the highest number for that specific attribute.</footer>
         </div>
     )
 }

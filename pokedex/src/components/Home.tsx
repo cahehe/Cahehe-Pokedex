@@ -1,9 +1,9 @@
 
 import {useState, useEffect} from 'react'; 
 import Table from './table';
-//import './table.css';
 
 
+//interface allPokeData
 interface pokeData{
     pokedex_number: number,
     name: string,
@@ -12,13 +12,12 @@ interface pokeData{
     type_2: string
 }
 
-//interface allPokeData
-
+const config = require("../config.json")
+const path = config.path
 const Home = () => {
-    const [result, setResult] = useState<pokeData[]>([]);
-
+    const [result, setResult] = useState<pokeData[]>([]);        
     useEffect(() => {        
-        fetch("https://carloshehe-pokedex-backend.herokuapp.com/general")
+        fetch(path + "general")
         .then(response => response.json())
         .then(response => setResult(response))           
         .catch(error => console.log(error))        

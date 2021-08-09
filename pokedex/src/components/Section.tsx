@@ -16,7 +16,7 @@ const Section = (prop: propTypes) =>{
         <div id = {prop.id}>
             <h2>{prop.title}</h2>
             {Object.keys(prop.data[0]).map((keyName, keyIndex) => (
-                <h3>{keyName}: {prop.data[0][keyName]} </h3>
+                <h3 key = {keyName}>{keyName}: {prop.data[0][keyName]} </h3>
             ))}
         </div>
     )

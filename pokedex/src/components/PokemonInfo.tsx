@@ -17,6 +17,8 @@ interface data{
     [ key : string]: string
 }
 
+const config = require("../config.json")
+
 const PokemonInfo = (prop:prop) => {
 
     const {pokemonName} = useParams<linkProp>();        
@@ -27,7 +29,7 @@ const PokemonInfo = (prop:prop) => {
     const[maxVals, setMaxVals] = useState([{}])    
     const[imageUrl, setImageUrl] = useState<data[]>([{'link': '/images/noImage.jpeg'}])
 
-    const path = `https://carloshehe-pokedex-backend.herokuapp.com/`
+    const path = config.path
 
     useEffect(() => {
         fetch(path + `pokedexInfo?name=${encodeURIComponent(pokemonName)}`)
@@ -101,7 +103,7 @@ const PokemonInfo = (prop:prop) => {
                     <Section id = "abilities" data = {abilities} title = {"Abilities"}/>                
                 </div>                            
             </div>
-            <Stats id = "basicStats" data = {basicStats} title = {"Basic Stats"} max = {maxVals}/>
+            <Stats id = "basicStats" data = {basicStats} title = {"Basic Stats"} max = {maxVals}/>            
         </div>
     )
     
