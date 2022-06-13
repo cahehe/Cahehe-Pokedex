@@ -2,8 +2,7 @@ import logo from '../images/logo.png'
 import {Link} from 'react-router-dom'
 
 interface props{
-    id : string;
-    //class: string
+    id : string;    
 }
 
 const Logo = ( prop : props) => {

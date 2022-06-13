@@ -19,10 +19,11 @@ interface tableProps{
 
 const Table = (props: tableProps) =>{ 
 
-    //const data : Array<any> = props.result
     
     const data: Array<any> = useMemo(() => props.result,[props.result])
     
+    //save memoized value. Recommended by react-table docs
+    //if table rerenders we don't have to recalculate logic
     const columns: Array<any> = useMemo(
       () => [
         {
@@ -60,18 +61,17 @@ const Table = (props: tableProps) =>{
     } = tableInstance    
 
 
+    //save memoized function
     const Row = useCallback(({index, style}) => {
       const row = rows[index]
         prepareRow(row)
         return (
           <div {...row.getRowProps({style})}  className = "rows">          
             {
-              row.cells.map(cell => {
-              //console.log(row)
-              //let name = row['name']
+              row.cells.map(cell => {              
                 return (                      
                   <div {...cell.getCellProps()} className = "all"> 
-                    {/* need to encode incase we have percentage sign                            */}                    
+                    {/* need to encode incase we have percentage sign*/}                    
                     <Link to = {'/' +  encodeURIComponent(row.values.name)}>                                                  
                       {cell.render('Cell') }
                     </Link>                        

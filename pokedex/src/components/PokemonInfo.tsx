@@ -64,17 +64,11 @@ const PokemonInfo = (prop:prop) => {
         .catch(error => console.log(error))   
     },[path])
 
-    useEffect(() => {
-        //console.log("1st")
-        
+    useEffect(() => {                
         fetch(path + `images?name=${encodeURIComponent(pokemonName)}`)
         .then(response => response.json())
         .then(response => setImageUrl(response))           
         .catch(error => console.log(error))   
-                          
-
-        // setImageUrl([{'link': './images/noImage.jpeg'}])
-        // console.log("2nd")
 
     },[path, pokemonName])
 
@@ -85,16 +79,13 @@ const PokemonInfo = (prop:prop) => {
         }
 
         return <img src = {noImg} id = "image" alt = ""/>
-    } 
-    
-    //console.log(imageUrl[0]['link'])
+    }         
 
     return(
         <div>
             <h1 id = "title">{pokemonName}</h1>
             <div className = "info">
-                {imageRender(imageUrl)}
-                {/* <img src = {imageUrl[0]['link']} id = "image" alt = ""/> */}
+                {imageRender(imageUrl)}                
                 <Section id = "training" data = {training} title = {"Training"}/>
                 <div id = "lastColumn">
                     <Section id = "pokedexInfo" data = {pokedexInfo} title = {"Pokedex Info"}/>

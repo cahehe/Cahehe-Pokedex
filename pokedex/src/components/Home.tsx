@@ -1,8 +1,6 @@
 
 import {useState, useEffect} from 'react'; 
 import Table from './table';
-//import './table.css';
-
 
 interface pokeData{
     pokedex_number: number,
@@ -11,8 +9,6 @@ interface pokeData{
     type_1: string,
     type_2: string
 }
-
-//interface allPokeData
 
 const Home = () => {
     const [result, setResult] = useState<pokeData[]>([]);
